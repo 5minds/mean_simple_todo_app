@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('simpleToDoApp')
-  .controller('TaskNewCtrl', function($scope, $location, Task, _) {
+  .controller('TaskNewCtrl', function($scope, $location, Task) {
 
     $scope.task = {
       title: null,

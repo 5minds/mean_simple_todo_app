@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('simpleToDoApp')
-  .controller('TaskEditCtrl', function($scope, $location, $routeParams, Task, _) {
+  .controller('TaskEditCtrl', function($scope, $location, $routeParams, Task) {
 
     $scope.task = Task.get({id: $routeParams.taskId}, function(task) {
       $scope.task = task;
