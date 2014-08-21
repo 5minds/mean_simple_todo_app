@@ -16,13 +16,6 @@ mongoose.connect('mongodb://localhost/simple-todo-' + app.get('env'));
 var routes = require('./routes/index');
 var tasks = require('./routes/tasks');
 
-// TODO: ? why
-/*
-app.get('*', function(req, res) {
-  res.redirect('/#' + req.originalUrl);
-});
-*/
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
