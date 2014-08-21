@@ -10,7 +10,7 @@
 		<tbody>
 			<tr ng-repeat="task in tasks">
 				<td ng-bind="task.title" ng-click="editTask(task)"></td>
-				<td ng-bind="task.tags.join(', ')"></td>
+				<td><tags data="task.tags"></tags></td>
 				<td class="text-center">
 					<div class="btn-group">
 						<button class="btn btn-danger btn-xs" ng-click="finishTask(task)">
