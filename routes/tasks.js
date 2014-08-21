@@ -41,7 +41,7 @@ router.post('/', function(req, res) {
 		
 		if (saveError) {
 			debugError(saveError);
-			res.json(422, saveError); // Unprocessable Entity
+			res.json(422, saveError); // Unprocessable entity
 		} else {
 			res.json(201, _.pick(task, '_id', 'title', 'note', 'tags', 'done'));
 		}
@@ -56,7 +56,7 @@ router.put('/:id', function(req, res) {
 		
 		if (updateError) {
 			debugError(updateError);
-			req.json(422, updateError); // Unprocessable Entity
+			req.json(422, updateError); // Unprocessable entity
 		} else {
 			res.json(200, _.pick(task, '_id', 'title', 'note', 'tags', 'done'));
 		}
@@ -71,7 +71,7 @@ router.delete('/:id', function(req, res) {
 			debugError(deleteError);
 			res.json(404);
 		} else {
-			res.json(204); // no content
+			res.json(204); // No content
 		}
 	});
 
