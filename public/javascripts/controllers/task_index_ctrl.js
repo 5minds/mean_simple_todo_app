@@ -1,22 +1,29 @@
 'use strict';
-	
+  
 angular.module('simpleToDoApp')
-	.controller('TaskIndexCtrl', function($scope, $location, Task, _) {
+  .controller('TaskIndexCtrl', function($scope, $location, $window, Task, _) {
 
-		$scope.tasks = Task.query();
+    $scope.tasks = Task.query();
 
-		$scope.newTask = function() {
-			$location.path('/new');
-		}
+    $scope.newTask = function() {
+      $location.path('/new');
+    }
 
-		$scope.editTask = function(task) {
-			$location.path('/edit/' + task._id);
-		};
+    $scope.editTask = function(task) {
+      $location.path('/edit/' + task._id);
+    };
 
-		$scope.deleteTask = function(task) {
-			$scope.tasks = _.without($scope.tasks, task);
+    $scope.finishTask = function(task) {
 
-			var deleteTask = new Task(task);
-			deleteTask.$remove();
-		};
-	});
+      var doFinish = $window.confirm("Finish task '" + task.title + "'?");
+
+      if (doFinish) {
+
+        $scope.tasks = _.without($scope.tasks, task);
+
+        var finishTask = new Task(task);
+        finishTask.done = true;
+        finishTask.$update();
+      }
+    };
+  });

@@ -1,47 +1,47 @@
 'use strict';
 
 angular.module('simpleToDoApp')
-	.controller('TaskNewCtrl', function($scope, $location, Task, _) {
+  .controller('TaskNewCtrl', function($scope, $location, Task, _) {
 
-		$scope.task = {
-			title: null,
-			note: null,
-			tags: []
-		};
+    $scope.task = {
+      title: null,
+      note: null,
+      tags: []
+    };
 
-		$scope.prepareTags = function() {
-			var tags = [];
+    $scope.prepareTags = function() {
+      var tags = [];
 
-			if ($scope.tags != null) {
-				$scope.tags.split(',').forEach(function(tag) {
-					tag = tag.trim();
+      if (typeof($scope.tags) === 'string') {
+        $scope.tags.split(',').forEach(function(tag) {
+          tag = tag.trim();
 
-					if (tag != "") {
-						tags.push(tag);
-					}
-				});	
+          if (tag != "") {
+            tags.push(tag);
+          }
+        }); 
 
-				$scope.task.tags = tags;
-			} else {
-				$scope.task.tags = [];
-			}
+        $scope.task.tags = tags;
+      } else {
+        $scope.task.tags = [];
+      }
 
-		};
+    };
 
-		$scope.cancel = function() {
-			$location.path('/');
-		};
+    $scope.cancel = function() {
+      $location.path('/');
+    };
 
-		$scope.saveTask = function() {
+    $scope.saveTask = function() {
 
-			$scope.prepareTags();
+      $scope.prepareTags();
 
-			var task = new Task($scope.task);
+      var task = new Task($scope.task);
 
-			task.$save(function(task) {
-				$location.path('/');
-			}, function(err) {
-				console.log(err);
-			});
-		};
-	});
+      task.$save(function(task) {
+        $location.path('/');
+      }, function(err) {
+        console.log(err);
+      });
+    };
+  });

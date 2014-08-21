@@ -7,7 +7,7 @@ var Task = require('./../models/task');
 var debugError = require('debug')('tasks:error');
 
 router.get('/', function(req, res) {
-	Task.find().select('_id title note tags done').exec(function(findError, tasks) {
+	Task.find().where('done').ne(true).select('_id title note tags done').exec(function(findError, tasks) {
 
 		if (findError) {
 			debugError("Cannot find tasks");

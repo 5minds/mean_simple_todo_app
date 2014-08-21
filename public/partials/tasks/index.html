@@ -5,18 +5,16 @@
 		<thead>
 			<th>Title</th>
 			<th>Tags</th>
-			<th>Done</th>
-			<th></th>
+			<th width="10%"></th>
 		</thead>
 		<tbody>
 			<tr ng-repeat="task in tasks">
 				<td ng-bind="task.title" ng-click="editTask(task)"></td>
 				<td ng-bind="task.tags.join(', ')"></td>
-				<td ng-bind="task.done"></td>
 				<td class="text-center">
 					<div class="btn-group">
-						<button class="btn btn-danger btn-xs" ng-click="deleteTask(task)">
-							<span class="glyphicon glyphicon-trash"></span>
+						<button class="btn btn-danger btn-xs" ng-click="finishTask(task)">
+							<span class="glyphicon glyphicon-unchecked"></span> finish
 						</button>
 					</div>
 				</td>
