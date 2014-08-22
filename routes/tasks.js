@@ -7,8 +7,23 @@ var Task = require('./../models/task');
 var debugError = require('debug')('tasks:error');
 
 router.get('/', function(req, res) {
-  Task.find().where('done').ne(true).select('_id title note tags done').exec(function(findError, tasks) {
+  var query = null;
 
+  if (typeof(req.query.q) === 'string')
+  {
+    var fulltext = [];
+
+    fulltext.push({title: new RegExp(req.query.q, 'i')});
+    fulltext.push({note: new RegExp(req.query.q, 'i')});
+    fulltext.push({tags: new RegExp(req.query.q, 'i')});
+
+    query = Task.find({$or: fulltext});
+  } else {
+    query = Task.find();
+    query = query.where('done').ne(true);
+  }
+
+  query.select('_id title note tags done').exec(function(findError, tasks) {
     if (findError) {
       debugError("Cannot find tasks");
       res.json(404, findError);
