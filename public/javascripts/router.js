@@ -1,12 +1,6 @@
 'use strict';
 
-var simpleToDoApp = angular.module('simpleToDoApp', [
-  'ngRoute',
-  'ngResource',
-  'underscore'
-  ]);
-
-simpleToDoApp.config(['$routeProvider',
+angular.module('simpleToDoApp').config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/', {

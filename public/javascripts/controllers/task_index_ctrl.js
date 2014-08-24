@@ -7,7 +7,7 @@ angular.module('simpleToDoApp')
 
     $scope.tasks = Task.query();
 
-    
+
     $scope.$watch('search_string', function() {
       $scope.doSearch();
     });
