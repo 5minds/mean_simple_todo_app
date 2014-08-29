@@ -1,7 +1,22 @@
 'use strict';
   
 angular.module('simpleToDoApp')
-  .controller('TaskIndexCtrl', function($scope, $location, $window, Task, _) {
+  .controller('TaskIndexCtrl', function($scope, $location, $window, Task, Socket, _) {
+
+    Socket.on('tasks:changed', function(updateTask) {
+        var changedTask = _.find($scope.tasks, function(task) {
+          return task._id == updateTask._id;
+        });
+
+        if (!!changedTask) {
+          changedTask.title = updateTask.title;
+          changedTask.tags = updateTask.tags;
+          changedTask.done = updateTask.done;
+        } else {
+          $scope.doSearch();
+        }
+
+    });
 
     $scope.search_string = "";
 
