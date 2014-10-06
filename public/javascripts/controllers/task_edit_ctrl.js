@@ -22,7 +22,9 @@ angular.module('simpleToDoApp')
 
         $scope.task.tags = tags;
       } else {
-        $scope.task.tags = [];
+        if (typeof($scope.tags) == void(0)) {
+          $scope.task.tags = [];
+        }
       }
 
     };
