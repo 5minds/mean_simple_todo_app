@@ -20,12 +20,12 @@ var TaskSchema = new mongoose.Schema({
 	},
 });
 
+// Task.findOpen(function (err, tasks) {})
 TaskSchema.statics.findOpen = function(callback) {
 	var query = this.find({});
 	query = query.where('done').ne(true);
 
 	query.exec(callback);
 };
-
 
 module.exports = mongoose.model('Task', TaskSchema);
