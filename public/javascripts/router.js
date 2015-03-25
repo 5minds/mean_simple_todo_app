@@ -1,5 +1,7 @@
 'use strict';
 
+var editTemlateUrl = 'partials/tasks/edit.html';
+
 angular.module('simpleToDoApp').config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
@@ -12,7 +14,7 @@ angular.module('simpleToDoApp').config(['$routeProvider',
         controller: 'TaskNewCtrl'
       }).
       when('/edit/:taskId', {
-        templateUrl: 'partials/tasks/edit.html',
+        templateUrl: editTemlateUrl,
         controller: 'TaskEditCtrl'
       });
   }
